@@ -1,26 +1,17 @@
 {
+  "name": "carometro-senai-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guilherme Ferraresi",
+  "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mysql2": "^3.9.7",
     "sequelize": "^6.37.3"
-  },
-  "name": "carometro-backend",
-  "description": "",
-  "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oliveeira2610/carometro-backend.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/oliveeira2610/carometro-backend/issues"
-  },
-  "homepage": "https://github.com/oliveeira2610/carometro-backend#readme"
+  }
 }

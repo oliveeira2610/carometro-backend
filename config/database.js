@@ -1,11 +1,11 @@
 //Arquivo de configuração BD
 
-module.export = {
+module.exports = {
     development: {
         username: process.env.DB_USER || 'root', 
         //username: 'root';
     
-        password: 'senaisp',
+        password: 'root',
         database: 'carometro',
         host: 'localhost',
         port: 3306,
