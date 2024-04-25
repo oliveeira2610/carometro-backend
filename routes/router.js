@@ -8,3 +8,4 @@ router.get('/usuario/:id', usuarioController.getById);
 router.post('/usuario', usuarioController.createUsuario);
 
 module.exports = router;
+
