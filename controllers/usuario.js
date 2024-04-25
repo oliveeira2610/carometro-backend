@@ -11,7 +11,7 @@ exports.getById = async (req, res) => {
 };
 
 exports.createUsuario = async (req, res) => {
-    const usuarioCadastrado = await Usuario.findOne({cpf : req.body.cpf});
+    const usuarioCadastrado = await Usuario.findOne({where: {cpf: req.body.cpf}});
     if (usuarioCadastrado) {
         return res.send('Já existe um usuário cadastrado neste CPF.')
     }
