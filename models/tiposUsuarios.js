@@ -3,16 +3,14 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../config/sequelize');
 
-const tiposUsuarios = sequelize.define('tiposUsuarios', {
+const tiposUsuarios = sequelize.define('tipos_usuarios', {
     //Define as informações da tabela colunas
 
-    idTiposUsuarios:{
+    idTipos_Usuarios:{
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-
-    idTipos_Usuarios: Sequelize.NUMBER,
     descricao: Sequelize.STRING,
 },
 {
