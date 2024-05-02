@@ -1,12 +1,12 @@
 {
-  "name": "carometro-backend",
+  "name": "carometro-senai-back",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Isabela Manzano e Gabriel Rodrigues",
+  "author": "Guilherme Ferraresi",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
