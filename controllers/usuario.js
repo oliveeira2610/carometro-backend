@@ -22,7 +22,7 @@ exports.createUsuario = async (req, res) => {
 };
 
 exports.updateUsuario = async (req,res) => {
-    const codigoUsuario = req.params.updateUsuario;
+    const cpfUsuario = req.params.updateUsuario;
     try{
         const Usuariocadastrado = await Usuario.findOne({where: {codigo: cpfUsuario}});
         if(Usuariocadastrado){
