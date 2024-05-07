@@ -38,7 +38,7 @@ exports.updateTurma = async (req,res) => {
             return res.send({message: 'Turma Atualizada com sucesso', turmacomdadosnovos: turmaAtualizada});
         }
         else {
-            return res.send("Turma encontrada, porém, sem novos dados para atualizar")
+            return res.send("Turma encontrada, mas sem novos dados para atualizar")
         }
 
 
