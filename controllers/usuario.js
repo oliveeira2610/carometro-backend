@@ -27,6 +27,7 @@ exports.updateUsuario = async (req,res) => {
         const Usuariocadastrado = await Usuario.findOne({where: {codigo: cpfUsuario}});
         if(Usuariocadastrado){
             delete req.body.cpf; //medida de segurança
+            
 
             const [numRowsUpdated] = await Usuarios.update(req.body, { //define um array que faz contagem de numero de linhas que vao ser atualizadas, passadas na aquisiçao do body
                 where: {cpf: cpfUsuario}
