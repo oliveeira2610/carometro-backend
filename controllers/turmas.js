@@ -31,18 +31,20 @@ exports.updateTurma = async (req,res) => {
             const [numRowsUpdated] = await Turmas.update(req.body, { //define um array que faz contagem de numero de linhas que vao ser atualizadas, passadas na aquisiçao do body
                 where: {codigo: codigoTurma}
             })
-        }
 
-        if(numRowsUpdated > 0){
-            const turmaAtualizada = await Turmas.findOne({where:{codigo :codigoTurma}});
-            return res.send({message: 'Turma Atualizada com sucesso', turmacomdadosnovos: turmaAtualizada});
-        }
-        else {
-            return res.send("Turma encontrada, mas sem novos dados para atualizar")
+            if(numRowsUpdated > 0){
+                const turmaAtualizada = await Turmas.findOne({where:{codigo :codigoTurma}});
+                return res.send({message: 'Turma Atualizada com sucesso', turmacomdadosnovos: turmaAtualizada});
+            } else {
+                return res.send("Turma encontrada, mas sem novos dados para atualizar");
+            }
+        } else{
+        return res.status(404).send("Não existe uma turma cadastrada com este codigo");
         }
 
 
     }catch (error) {
-        return res.status(404).send("Não existe uma turma cadastrada com este codigo")
+        console.error("Erro ao atualizar turma", error);
+        return res.status(500).send("Decorreu um erro ao atualizar a turma");
     }
-}
+};
