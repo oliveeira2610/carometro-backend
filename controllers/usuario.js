@@ -5,7 +5,7 @@ exports.getAll = async (req, res) => {
 };
 
 exports.getById = async (req, res) => {
-    const idDoParam = req.params.id;ljsfvpo8aorsgbkfjçAEFYHGUIObefiohgA78EGF
+    const idDoParam = req.params.id;
     const usuarioEncontrado = await  Usuario.findOne({idUsarios: idDoParam});
     res.json(usuarioEncontrado)
 };
@@ -21,31 +21,33 @@ exports.createUsuario = async (req, res) => {
     return res.send("Deu certo")
 };
 
-exports.updateUsuario = async (req,res) => {
-    const cpfUsuario = req.params.updateUsuario;
+exports.updateControllerNome = async (req, res) => {
+    const cpfUser = req.params.cpf;
     try{
-        const Usuariocadastrado = await Usuario.findOne({where: {codigo: cpfUsuario}});
-        if(Usuariocadastrado){
-            delete req.body.cpf; //medida de segurança
-            
+        const userMudar = await Usuario.findOne({where: {cpf: cpfUser}})
 
-            const [numRowsUpdated] = await Usuarios.update(req.body, { //define um array que faz contagem de numero de linhas que vao ser atualizadas, passadas na aquisiçao do body
-                where: {cpf: cpfUsuario}
-            })
+        if(userMudar) {
+            delete req.body.cpf,
+            delete req.body.Tipos_Usuarios_idTipos_Usuarios,
+            delete req.body.idUsuarios;
 
-            if(numRowsUpdated > 0){
-                const usuarioAtualizado = await Usuarios.findOne({where:{cpf:cpfUsuario}});
-                return res.send({message: 'Usuario Atualizado com sucesso', usuariocomdadosnovos: usuarioAtualizado});
-            } else {
-                return res.send("Usuario encontrado, mas sem novos dados para atualizar");
+            const [numRowsUpdate] = await Usuario.update(req.body, {
+                where: {cpf: cpfUser}
+            });
+
+            if (numRowsUpdate > 0) {
+                const usuarioMudado = await Usuario.findOne({where: {cpf: cpfUser}});
+                return res.send({message: 'Usuário Atualizado com sucesso', usuarioatualizado: usuarioMudado});
             }
-        } else{
-        return res.status(404).send("Não existe um usuario cadastrado com este codigo");
+            else {
+                return res.send('Usuário encontrado, porem, sem novos dados para atualizar');
+            }
         }
-
-
-    }catch (error) {
-        console.error("Erro ao atualizar usuario", error);
-        return res.status(500).send("Decorreu um erro ao atualizar o usuario");
+        else{
+            return res.status(404).send("Não existe um usuário cadastrado com este cpf");
+        }
+    } catch (error){
+        consoler.error('Erro ao atualizar o usuário', error);
+        return res.status(500).send('Ocorreu um erro ao atualizar o usuário.');
     }
 };
