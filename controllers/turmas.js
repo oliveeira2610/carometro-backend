@@ -22,7 +22,7 @@ exports.createTurma = async (req, res) => {
 };
 
 exports.updateTurma = async (req,res) => {
-    const codigoTurma = req.params.updateTurma;
+    const codigoTurma = req.params.codigo;
     try{
         const Turmacadastrada = await Turmas.findOne({where: {codigo: codigoTurma}});
         if(Turmacadastrada){
