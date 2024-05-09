@@ -26,7 +26,7 @@ exports.updateTurma = async (req,res) => {
     try{
         const Turmacadastrada = await Turmas.findOne({where: {codigo: codigoTurma}});
         if(Turmacadastrada){
-            delete req.body.codigo; //medida de segurança
+            delete req.body.codigo; //controlar a atualização da informação
 
             const [numRowsUpdated] = await Turmas.update(req.body, { //define um array que faz contagem de numero de linhas que vao ser atualizadas, passadas na aquisiçao do body
                 where: {codigo: codigoTurma}
