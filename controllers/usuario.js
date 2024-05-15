@@ -1,4 +1,6 @@
 const Usuario = require('../models/usuario');
+const UsuariosTurmas = require('../models/Usuarios_turmas');
+
 exports.getAll = async (req, res) => {
     const usuarios = await Usuario.findAll();
     res.json(usuarios)
@@ -6,7 +8,7 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     const idDoParam = req.params.id;
-    const usuarioEncontrado = await  Usuario.findOne({idUsarios: idDoParam});
+    const usuarioEncontrado = await  Usuario.findOne({idUsuarios: idDoParam});
     res.json(usuarioEncontrado)
 };
 
@@ -15,16 +17,16 @@ exports.createUsuario = async (req, res) => {
     if (usuarioCadastrado) {
         return res.send('Já existe um usuário cadastrado neste CPF.')
     }
-
     const usuarioCriado = await Usuario.create(req.body);
-    if(usuarioCriado.idUsarios && req.body.Turmas_idTurmas){
+    if (usuarioCriado.idUsuarios && req.body.Turmas_idTurmas){
         await UsuariosTurmas.create({
             Turmas_idTurmas: req.body.Turmas_idTurmas,
-            Usuarios_idUsuarios: usuarioCadastrado.idUsarios,
-
-
+            Usuarios_idUsuarios: usuarioCriado.idUsuarios,
         })
     }
+    console.log("usuarioCriado", usuarioCriado);
+    return res.send("Deu certo");
+
 };
 
 exports.updateControllerNome = async (req, res) => {
