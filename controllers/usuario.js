@@ -17,8 +17,14 @@ exports.createUsuario = async (req, res) => {
     }
 
     const usuarioCriado = await Usuario.create(req.body);
-    console.log("usuarioCriado", usuarioCriado);
-    return res.send("Deu certo")
+    if(usuarioCriado.idUsarios && req.body.Turmas_idTurmas){
+        await UsuariosTurmas.create({
+            Turmas_idTurmas: req.body.Turmas_idTurmas,
+            Usuarios_idUsuarios: usuarioCadastrado.idUsarios,
+
+
+        })
+    }
 };
 
 exports.updateControllerNome = async (req, res) => {

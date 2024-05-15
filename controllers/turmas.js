@@ -1,5 +1,6 @@
 const { where } = require('sequelize');
 const Turmas = require('../models/turmas');
+const { combineTableNames } = require('sequelize/lib/utils');
 exports.getAll = async (req, res) => {
     const turmas = await Turmas.findAll();
     res.json(turmas)
@@ -21,7 +22,7 @@ exports.createTurma = async (req, res) => {
     return res.send("Deu certo")
 };
 
-exports.updateTurma = async (req,res) => {
+exports.updateTurma = async (req,res) => { 
     const codigoTurma = req.params.codigo;
     try{
         const Turmacadastrada = await Turmas.findOne({where: {codigo: codigoTurma}});
@@ -48,3 +49,4 @@ exports.updateTurma = async (req,res) => {
         return res.status(500).send("Decorreu um erro ao atualizar a turma");
     }
 };
+
