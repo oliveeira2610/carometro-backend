@@ -15,4 +15,3 @@ exports.createTypeUser = async (req, res) => {
     console.log("Tipo de usuario criado", tiposUsuarios);
     return res.send("Deu certo")
 };
-
