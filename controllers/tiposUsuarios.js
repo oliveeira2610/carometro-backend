@@ -12,6 +12,7 @@ exports.getById = async (req, res) => {
 
 exports.createTypeUser = async (req, res) => {
     const tiposUsuarioCriado = await tiposUsuarios.create(req.body);
-    console.log("Tipo de usuario crado", tiposUsuarios);
+    console.log("Tipo de usuario criado", tiposUsuarios);
     return res.send("Deu certo")
 };
+
