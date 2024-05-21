@@ -28,3 +28,5 @@ exports.createTypeUser = async (req, res) => {
     // Retorna uma resposta indicando que a operação foi bem-sucedida
     return res.send("Deu certo");
 };
+
+

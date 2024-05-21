@@ -88,3 +88,26 @@ exports.updateControllerNome = async (req, res) => {
         return res.status(500).send('Ocorreu um erro ao atualizar o usuário.');
     }
 };
+
+exports.deleteUsuario = async (req, res) => { // Exporta uma função assíncrona chamada deleteUsuario que recebe req e res como parâmetros
+    try { // Tenta executar o bloco de código abaixo e captura erros, se ocorrerem
+        const { id } = req.params; // Extrai o parâmetro 'id' dos parâmetros da requisição (URL)
+        const usuario = await Usuario.findByPk(id); // Procura um usuário no banco de dados pelo seu ID primário (Primary Key)
+
+        if(!usuario) { // Verifica se o usuário não foi encontrado
+            return res.status(404).send('Usuário não encontrado'); // Se não encontrado, retorna um status 404 com a mensagem 'Usuário não encontrado'
+        }
+
+        const desvincular = await UsuariosTurmas.findOne({ where: { Usuarios_idUsuarios: usuario.idUsuarios } }); // Procura um registro na tabela UsuariosTurmas que tenha a associação com o id do usuário
+        if(desvincular) { // Verifica se a associação foi encontrada
+            await desvincular.destroy(); // Se encontrada, destrói (deleta) o registro de associação
+        }
+
+        await usuario.destroy(); // Depois de lidar com a associação, destrói (deleta) o usuário
+
+        return res.send('Usuario deletado com sucesso'); // Retorna uma mensagem de sucesso indicando que o usuário foi deletado
+    } catch (error) { // Se ocorrer algum erro em qualquer parte do bloco try
+        console.error('Erro ao deletar usuario', error); // Loga o erro no console para fins de debug
+        return res.status(500).send('Erro ao deletar usuario'); // Retorna um status 500 com a mensagem 'Erro ao deletar usuario'
+    }
+};
