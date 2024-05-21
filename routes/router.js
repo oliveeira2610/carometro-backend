@@ -25,6 +25,8 @@ router.post('/usuario', usuarioController.createUsuario);
 // Define uma rota POST para "/usuario" que chama o método createUsuario do usuarioController.
 // Esta rota é usada para criar um novo usuário.
 
+router.delete('/usuario/:id', usuarioController.deleteUsuario);
+
 router.put('/usuario/:cpf', usuarioController.updateControllerNome);
 // Define uma rota PUT para "/usuario/:cpf" que chama o método updateControllerNome do usuarioController.
 // Esta rota é usada para atualizar o nome de um usuário específico pelo CPF.
