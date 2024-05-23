@@ -19,4 +19,3 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 // Cria uma instância do middleware 'multer' usando a configuração de armazenamento definida anteriormente. A configuração é passada como um objeto com a propriedade 'storage'.
-
